@@ -36,7 +36,7 @@ export const Route = createFileRoute("/recipes/$slug")({
 });
 
 function RecipePage() {
-  const { recipe } = Route.useLoaderData();
+  const { recipe } = Route.useLoaderData() as { recipe: Recipe };
   const [done, setDone] = useState<Set<number>>(new Set());
   const [saved, setSaved] = useState(false);
   const related = recipes.filter((r) => r.slug !== recipe.slug).slice(0, 3);
