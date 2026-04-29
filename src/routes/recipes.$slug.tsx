@@ -2,11 +2,11 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, Clock, Flame, Heart, Printer, Share2, Users, Utensils } from "lucide-react";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { getRecipe, recipes } from "@/lib/recipes";
+import { getRecipe, recipes, type Recipe } from "@/lib/recipes";
 import { RecipeCard } from "@/components/recipe-card";
 
 export const Route = createFileRoute("/recipes/$slug")({
-  loader: ({ params }) => {
+  loader: ({ params }): { recipe: Recipe } => {
     const recipe = getRecipe(params.slug);
     if (!recipe) throw notFound();
     return { recipe };
